@@ -311,5 +311,44 @@ def export_comments():
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
+@app.route('/api/posts/<int:post_id>')
+def get_post_detail(post_id):
+    """API untuk mendapatkan detail post dan komentarnya"""
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        # Ambil data post
+        cursor.execute("""
+            SELECT * FROM processed_posts 
+            WHERE post_link LIKE ?
+            ORDER BY processed_at DESC 
+            LIMIT 1
+        """, (f'%/{post_id}',))
+        
+        post = cursor.fetchone()
+        
+        # Ambil komentar untuk post ini
+        cursor.execute("""
+            SELECT * FROM comments 
+            WHERE post_id = ?
+            ORDER BY comment_date ASC
+        """, (post_id,))
+        
+        comments = [dict(row) for row in cursor.fetchall()]
+        
+        conn.close()
+        
+        return jsonify({
+            'success': True,
+            'data': {
+                'post': dict(post) if post else None,
+                'comments': comments,
+                'total_comments': len(comments)
+            }
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+    
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=4949, debug=True)
