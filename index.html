@@ -2,89 +2,41 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Comments Viewer</title>
-    <link rel="stylesheet" href="/spins/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>SpinGiveaway - Giveaway Manager</title>
+    <link rel="stylesheet" href="/order/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="logo">
-                <i class="fab fa-telegram"></i>
-                <span>Comment Viewer</span>
-            </div>
-            
-            <nav class="nav-menu">
-                <a href="#" class="nav-item active" data-page="dashboard">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="#" class="nav-item" data-page="comments">
-                    <i class="fas fa-comments"></i>
-                    <span>Komentar</span>
-                </a>
-                <a href="#" class="nav-item" data-page="users">
-                    <i class="fas fa-users"></i>
-                    <span>User</span>
-                </a>
-                <a href="#" class="nav-item" data-page="posts">
-                    <i class="fas fa-newspaper"></i>
-                    <span>Post</span>
-                </a>
-                <a href="#" class="nav-item" data-page="search">
-                    <i class="fas fa-search"></i>
-                    <span>Cari</span>
-                </a>
-            </nav>
-            
-            <div class="stats-summary" id="statsSummary">
-                <div class="stat-card">
-                    <i class="fas fa-comment"></i>
-                    <span class="stat-value" id="totalComments">0</span>
-                    <span class="stat-label">Komentar</span>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-user"></i>
-                    <span class="stat-value" id="totalUsers">0</span>
-                    <span class="stat-label">User</span>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-file-alt"></i>
-                    <span class="stat-value" id="totalPosts">0</span>
-                    <span class="stat-label">Post</span>
-                </div>
-            </div>
-        </aside>
-        
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="header">
-                <div class="header-title">
-                    <h1 id="pageTitle">Dashboard</h1>
-                    <p id="pageDescription">Statistik komentar Telegram</p>
-                </div>
-                <div class="header-actions">
-                    <button class="btn btn-primary" id="exportBtn">
-                        <i class="fas fa-download"></i> Export CSV
-                    </button>
-                    <button class="btn btn-outline" id="refreshBtn">
-                        <i class="fas fa-sync-alt"></i> Refresh
-                    </button>
-                </div>
-            </header>
-            
-            <div id="contentArea">
-                <!-- Content will be loaded here -->
-                <div class="loading">
-                    <i class="fas fa-spinner fa-spin"></i> Loading...
-                </div>
-            </div>
-        </main>
-    </div>
-    
-    <script src="/spins/js/script.js"></script>
+    <!-- Navigation Bar untuk 3 Page -->
+    <nav class="bottom-nav">
+        <div class="nav-item-gw active" data-page="giveaways">
+            <i class="fas fa-gift"></i>
+            <span>Giveaways</span>
+        </div>
+        <div class="nav-item-gw" data-page="activity">
+            <i class="fas fa-history"></i>
+            <span>Activity</span>
+        </div>
+        <div class="nav-item-gw" data-page="profile">
+            <i class="fas fa-user-circle"></i>
+            <span>Profil</span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content-gw" id="mainContent">
+        <!-- Content will be loaded here -->
+        <div class="loading-screen">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading...</p>
+        </div>
+    </main>
+
+    <script src="/order/js/giveaway.js"></script>
 </body>
 </html>
